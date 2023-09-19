@@ -4,3 +4,97 @@ author: "Zilin Huang"
 date: "`r Sys.Date()`"
 output: github_document
 ---
+
+```{r message=FALSE}
+library(tidyverse)
+library(readxl)
+library(haven)
+```
+
+Import the `FAS_litters.csv` csv using a relative path.
+
+```{r  message=FALSE}
+litters_df = read_csv("data/FAS_litters.csv")
+
+litters_df = janitor::clean_names(litters_df)
+```
+
+Import the same dataset using an absolute path.
+
+```{r message=FALSE}
+# litters_df_abs = read_csv("~/Desktop/P8105/data_wrangling_i/data/FAS_litters.csv")
+
+# litters_df_abs = janitor::clean_names(litters_df)
+```
+
+Import the `FAS_litters.csv` csv using a relative path.
+
+```{r message=FALSE}
+pups_df = read_csv("data/FAS_pups.csv")
+
+pups_df = janitor::clean_names(pups_df)
+```
+
+Import the `FAS_pups.csv` csv using a relative path.
+
+```{r message=FALSE}
+# pups_df_abs = read_csv("~/Desktop/P8105/data_wrangling_i/data/FAS_litters.csv")
+
+# litters_df_abs = janitor::clean_names(litters_df)
+```
+
+## Look at data
+
+```{r}
+litters_df
+
+head(litters_df)
+
+tail(litters_df)
+```
+
+You can use `view`
+
+```{r  eval=FALSE}
+view(litters_df)
+```
+
+Look at a data summary
+
+```{r}
+str(litters_df)
+
+skimr::skim(litters_df)
+```
+
+## Options in `read_`*
+
+```{r}
+litters_df_0 = read_csv("data/FAS_litters.csv", skip=10,col_names=FALSE)
+```
+
+Look at NA values.
+
+```{r}
+litters_df_0 = read_csv("data/FAS_litters.csv", na=c("NA",19,"."))
+```
+
+Column types
+
+```{r}
+litters_df_0 = read_csv("data/FAS_litters.csv", col_types=cols(Group=col_factor()))
+```
+
+## Other file types
+
+Import a xlsc file first.
+
+```{r}
+mlb_df = read_excel("data/mlb11.xlsx")
+```
+
+Import a SAS file.
+
+```{r}
+pulse_df = read_sas("data/public_pulse_data.sas7bdat")
+```
