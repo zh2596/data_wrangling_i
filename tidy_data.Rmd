@@ -1,0 +1,13 @@
+---
+title: "tidy_data"
+author: "Zilin Huang"
+date: "`r Sys.Date()`"
+output: github_document
+---
+
+##
+
+```{r}
+pulse_df = haven::read_sas("data/public_pulse_data.sas7bdat")
+```
+
